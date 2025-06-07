@@ -1,0 +1,14 @@
+{
+  "name": "automation-lab",
+  "version": "1.0.0",
+  "description": "This project uses [Playwright](https://playwright.dev/) for end-to-end testing of web applications.",
+  "main": "index.js",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.15.30",
+    "typescript": "^5.8.3"
+  }
+}
