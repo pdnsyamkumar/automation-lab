@@ -1,0 +1,33 @@
+name: 'Install Playwright Browser'
+description: 'Installs the specified Playwright browser and its dependencies'
+inputs:
+  browser:
+    description: 'Browser to install'
+    required: true
+    default: 'chromium'
+runs:
+  using: 'composite'
+  steps:
+    - name: Install browser
+      shell: bash
+      run: |
+        case "${{ inputs.browser }}" in
+          "chrome")
+            npx playwright install chrome
+            ;;
+          "edge")
+            npx playwright install msedge
+            ;;
+          "firefox")
+            npx playwright install firefox
+            ;;
+          "webkit"|"safari")
+            npx playwright install webkit
+            ;;
+          *)
+            npx playwright install chromium
+            ;;
+        esac
+        
+        # Install browser dependencies
+        npx playwright install-deps 

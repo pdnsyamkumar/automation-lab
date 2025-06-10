@@ -2,6 +2,54 @@ import { defineConfig, devices } from '@playwright/test'
 const baseURL = process.env.BASE_URL
   ? process.env.BASE_URL
   : 'https://automationexercise.com'
+
+
+  const commonOptions = [
+    '--start-maximized',
+    '--disable-web-security',
+    '--allow-insecure-localhost',
+    '--no-sandbox',
+    '--ignore-certificate-errors',
+  ]
+  // Launch Options for Playwright
+  const launchOptions = {
+    args: commonOptions,
+  }
+
+  // Helper function to get browser device settings
+const getBrowserDevice = () => {
+  const browserType = process.env.BROWSER?.toLowerCase() || 'chromium';
+  
+  switch(browserType) {
+    case 'edge':
+      return {
+        ...devices['Desktop Edge'],
+        launchOptions: { ...launchOptions, channel: 'msedge' }
+      };
+    case 'chrome':
+      return {
+        ...devices['Desktop Chrome'],
+        launchOptions: { ...launchOptions, channel: 'chrome' }
+      };
+    case 'safari':
+    case 'webkit':
+      return {
+        ...devices['Desktop Safari'],
+        launchOptions: { ...launchOptions }
+      };
+    case 'firefox':
+      return {
+        ...devices['Desktop Firefox'],
+        launchOptions: { ...launchOptions }
+      };
+    case 'chromium':
+    default:
+      return {
+        ...devices['Desktop Chrome'],
+        launchOptions: { ...launchOptions }
+      };
+  }
+}
 export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
@@ -13,21 +61,15 @@ export default defineConfig({
     trace: 'on-first-retry',
     testIdAttribute: 'data-qa',
     baseURL,
+    viewport: { width: 1280, height: 720 },
   },
   projects: [
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-    },
-
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
-
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
+      name: 'tests',
+      testMatch: '**/playwright/tests/**/*.spec.ts',
+      use: {
+        ...getBrowserDevice(),
+      },
+    }
   ],
 })
