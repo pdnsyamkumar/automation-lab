@@ -40,17 +40,12 @@ jobs:
                 echo "Browser set to: $BROWSER"
                 echo "Shards set to: $SHARDS"
             
-            - name: Create dynamic matrix for sharding
-              id: create-matrix
-              run: |
-                echo "Creating matrix..."
-                shards=${{ inputs.shards }}
-                if [ -z "$shards" ]; then
-                  shards=3
-                fi
-                shardArray=$(seq -s, 1 $shards | sed 's/,/","/g')
-                matrix=$(echo "{\"shard\": [\"$shardArray\"], \"total_shards\": [\"$shards\"]}")
-                echo "matrix=$matrix" >> $GITHUB_OUTPUT
+         id: create-matrix
+         run: |
+          shards=${{ inputs.shards }}
+          shardArray=$(seq 1 $shards | jq -R . | jq -s .)
+          matrix=$(jq -n --argjson shards "$shardArray" --arg total "$shards" '{shard: $shards, total_shards: [$total]}')
+          echo "matrix=$matrix" >> $GITHUB_OUTPUT
             
             - name: Install Browser
               uses: ./.github/actions/install-browser
@@ -65,15 +60,17 @@ jobs:
         strategy:
           matrix: ${{ fromJson(needs.setup-environment.outputs.matrix) }}
         steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
+           - name: Checkout code
+             uses: actions/checkout@v4
 
-            - name: Run Playwright tests
-              run: |
-                echo "Running tests in shard ${{ matrix.shard }} of ${{ matrix.total_shards }}"
-                npx playwright test 
-                --shard=${{ matrix.shard }}/${{ matrix.total_shards }} 
-                --project=tests
+          - name: Setup node, npm and cache
+            uses: './.github/actions/setup-npm'
+
+           run: |
+             echo "Running tests in shard ${{ matrix.shard }} of ${{ matrix.total_shards }}"
+            npx playwright test \
+              --shard=${{ matrix.shard }}/${{ matrix.total_shards }} \
+              --project=tests
 
               
             

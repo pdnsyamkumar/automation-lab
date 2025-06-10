@@ -50,11 +50,8 @@ export class SignUpPage extends BasePage {
 
   /** Selects the date of birth from dropdown menus */
   async selectDOB(dateOfBirth: DOB) {
-    console.log(dateOfBirth.day)
     await this.page.selectOption(`#days`, dateOfBirth.day)
-    console.log(dateOfBirth.month)
     await this.page.selectOption(`#months`, dateOfBirth.month)
-    console.log(dateOfBirth.year)
     await this.page.selectOption(`#years`, dateOfBirth.year)
   }
 

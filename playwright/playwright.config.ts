@@ -61,7 +61,7 @@ export default defineConfig({
     trace: 'on-first-retry',
     testIdAttribute: 'data-qa',
     baseURL,
-    viewport: { width: 1280, height: 720 },
+    viewport: { width: 1920, height: 1280 },
   },
   projects: [
     {
