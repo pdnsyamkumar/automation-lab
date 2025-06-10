@@ -1,0 +1,74 @@
+name: "Playwright Tests"
+on:
+  workflow_dispatch:
+    inputs:
+      browser:
+        description: "Browser to run tests in"
+        required: true
+        default: "chromium"
+        type: choice
+        options:
+          - chromium
+          - firefox
+          - webkit
+          - chrome
+          - edge
+          - safari
+      shards:
+        description: "Number of shards to run"
+        required: true
+        default: "1"
+
+jobs:
+  setup-environment:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.create-matrix.outputs.matrix }}
+    container:
+      image: mcr.microsoft.com/playwright:v1.45.3-jammy
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup node, npm and cache
+        uses: './.github/actions/setup-npm'
+
+      - name: Set up environment variables
+        run: |
+          echo "BROWSER=${{ github.event.inputs.browser }}" >> $GITHUB_ENV
+          echo "SHARDS=${{ github.event.inputs.shards }}" >> $GITHUB_ENV
+          echo "Browser set to: $BROWSER"
+          echo "Shards set to: $SHARDS"
+
+      - id: create-matrix
+        run: |
+          shards=${{ inputs.shards }}
+          shardArray=$(seq 1 $shards | jq -R . | jq -s .)
+          matrix=$(jq -n --argjson shards "$shardArray" --arg total "$shards" '{shard: $shards, total_shards: [$total]}')
+          echo "matrix=$matrix" >> $GITHUB_OUTPUT
+
+      - name: Install Browser
+        uses: ./.github/actions/install-browser
+        with:
+          browser: ${{ github.event.inputs.browser }}
+
+  run-tests:
+    needs: setup-environment
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.45.3-jammy
+    strategy:
+      matrix: ${{ fromJson(needs.setup-environment.outputs.matrix) }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup node, npm and cache
+        uses: './.github/actions/setup-npm'
+
+      - name: Run tests
+        run: |
+          echo "Running tests in shard ${{ matrix.shard }} of ${{ matrix.total_shards }}"
+          npx playwright test \
+            --shard=${{ matrix.shard }}/${{ matrix.total_shards }} \
+            --project=tests
