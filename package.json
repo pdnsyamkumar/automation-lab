@@ -3,13 +3,17 @@
   "version": "1.0.0",
   "description": "This project uses [Playwright](https://playwright.dev/) for end-to-end testing of web applications.",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@faker-js/faker": "^9.8.0",
     "@playwright/test": "^1.52.0",
     "@types/node": "^22.15.30",
+    "prettier": "^3.5.3",
     "typescript": "^5.8.3"
   }
 }

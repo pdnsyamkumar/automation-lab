@@ -1,5 +1,7 @@
-import { defineConfig, devices } from '@playwright/test';
-const baseURL = process.env.BASE_URL ? process.env.BASE_URL : 'https://automationexercise.com';
+import { defineConfig, devices } from '@playwright/test'
+const baseURL = process.env.BASE_URL
+  ? process.env.BASE_URL
+  : 'https://automationexercise.com'
 export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
@@ -28,4 +30,4 @@ export default defineConfig({
       use: { ...devices['Desktop Safari'] },
     },
   ],
-});
+})
