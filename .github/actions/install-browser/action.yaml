@@ -28,6 +28,6 @@ runs:
             npx playwright install chromium
             ;;
         esac
-        
+
         # Install browser dependencies
-        npx playwright install-deps 
+        npx playwright install-deps

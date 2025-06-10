@@ -3,51 +3,50 @@ const baseURL = process.env.BASE_URL
   ? process.env.BASE_URL
   : 'https://automationexercise.com'
 
+const commonOptions = [
+  '--start-maximized',
+  '--disable-web-security',
+  '--allow-insecure-localhost',
+  '--no-sandbox',
+  '--ignore-certificate-errors',
+]
+// Launch Options for Playwright
+const launchOptions = {
+  args: commonOptions,
+}
 
-  const commonOptions = [
-    '--start-maximized',
-    '--disable-web-security',
-    '--allow-insecure-localhost',
-    '--no-sandbox',
-    '--ignore-certificate-errors',
-  ]
-  // Launch Options for Playwright
-  const launchOptions = {
-    args: commonOptions,
-  }
-
-  // Helper function to get browser device settings
+// Helper function to get browser device settings
 const getBrowserDevice = () => {
-  const browserType = process.env.BROWSER?.toLowerCase() || 'chromium';
-  
-  switch(browserType) {
+  const browserType = process.env.BROWSER?.toLowerCase() || 'chromium'
+
+  switch (browserType) {
     case 'edge':
       return {
         ...devices['Desktop Edge'],
-        launchOptions: { ...launchOptions, channel: 'msedge' }
-      };
+        launchOptions: { ...launchOptions, channel: 'msedge' },
+      }
     case 'chrome':
       return {
         ...devices['Desktop Chrome'],
-        launchOptions: { ...launchOptions, channel: 'chrome' }
-      };
+        launchOptions: { ...launchOptions, channel: 'chrome' },
+      }
     case 'safari':
     case 'webkit':
       return {
         ...devices['Desktop Safari'],
-        launchOptions: { ...launchOptions }
-      };
+        launchOptions: { ...launchOptions },
+      }
     case 'firefox':
       return {
         ...devices['Desktop Firefox'],
-        launchOptions: { ...launchOptions }
-      };
+        launchOptions: { ...launchOptions },
+      }
     case 'chromium':
     default:
       return {
         ...devices['Desktop Chrome'],
-        launchOptions: { ...launchOptions }
-      };
+        launchOptions: { ...launchOptions },
+      }
   }
 }
 export default defineConfig({
@@ -70,6 +69,6 @@ export default defineConfig({
       use: {
         ...getBrowserDevice(),
       },
-    }
+    },
   ],
 })
