@@ -1,10 +1,10 @@
-import { BasePage } from "@pages/base.page";
+import { BasePage } from '@pages/base.page'
 
 export class HomePage extends BasePage {
+  readonly getNavHomeLink = () =>
+    this.page.locator(`.navbar-nav li a[href="/"]`)
 
-    readonly getNavHomeLink = () => this.page.locator(`.navbar-nav li a[href="/"]`)
-
-    async navigateToHomePage() {
-        await this.page.goto(`/`);
-    }
+  async navigateToHomePage() {
+    await this.page.goto(`/`)
+  }
 }

@@ -7,7 +7,7 @@
       "@components/*": ["./src/components/*"],
       "@testData/*": ["./test-data/*"],
       "@utilities/*": ["./utilities/*"],
-      "@matchers/*": ["./matchers/*"],
+      "@matchers/*": ["./matchers/*"]
     },
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,

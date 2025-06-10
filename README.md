@@ -13,7 +13,7 @@ This project uses [Playwright](https://playwright.dev/) for end-to-end testing o
 
 ```bash
 npm init -y
-````
+```
 
 ### 2. Install Playwright with Test Runner
 
@@ -39,9 +39,9 @@ npx playwright test --init
 
 This will create:
 
-* `playwright.config.ts`
-* `tests/example.spec.ts`
-* `.github` for CI integration (optional)
+- `playwright.config.ts`
+- `tests/example.spec.ts`
+- `.github` for CI integration (optional)
 
 ### 5. Run Your First Test
 
@@ -66,8 +66,8 @@ npx playwright test
 
 ## 📚 Resources
 
-* [Playwright Docs](https://playwright.dev/docs/intro)
-* [Playwright Test Runner](https://playwright.dev/docs/test-intro)
+- [Playwright Docs](https://playwright.dev/docs/intro)
+- [Playwright Test Runner](https://playwright.dev/docs/test-intro)
 
 ```
 
