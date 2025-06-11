@@ -18,6 +18,14 @@ on:
         description: "Number of shards to run"
         required: true
         default: "1"
+      retries:
+        description: "Number of retries for failed tests"
+        required: true
+        default: "0"
+      workers:
+        description: "Number of workers to run in parallel"
+        required: true
+        default: "1"
 
 env:
   BASE_URL: "https://automationexercise.com"
@@ -41,6 +49,8 @@ jobs:
           {
             echo "BROWSER=${{ github.event.inputs.browser }}"
             echo "SHARDS=${{ github.event.inputs.shards }}"
+            echo "RETRIES=${{ github.event.inputs.retries }}"
+            echo "WORKERS=${{ github.event.inputs.workers }}"
           } >> $GITHUB_ENV
 
       - name: Create test matrix
@@ -84,7 +94,10 @@ jobs:
           npx playwright test \
             --config=playwright/playwright.config.ts \
             --shard=${{ matrix.shard }}/${{ matrix.total_shards }} \
-            --project=tests
+            --project=tests \
+            --workers=${{ github.event.inputs.workers }} \
+            --retries=${{ github.event.inputs.retries }} \
+            --reporter=html \
       
       - name: Upload test artifacts
         if: always()
