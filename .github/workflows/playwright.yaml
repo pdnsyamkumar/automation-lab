@@ -97,12 +97,41 @@ jobs:
             --project=tests \
             --workers=${{ github.event.inputs.workers }} \
             --retries=${{ github.event.inputs.retries }} \
-            --reporter=html \
+            --reporter=blob \
       
       - name: Upload test artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-report-${{ matrix.shard }}
-          path: playwright-report/
+          name: blob-report-${{ matrix.shard }}
+          path: blob-report/
+          retention-days: 7
+
+  merge-reports:
+    needs: run-tests
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.40.0-focal
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup node, npm and cache
+        uses: './.github/actions/setup-npm'
+
+      - name: Download all test reports
+        uses: actions/download-artifact@v4
+        with:
+          path: all-blob-reports
+          pattern: blob-report-*
+          merge-multiple: true
+
+      - name: Merge into HTML Report
+        run: npx playwright merge-reports --reporter html ./all-blob-reports
+
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-merged-report
+          path: playwright-report
           retention-days: 7
