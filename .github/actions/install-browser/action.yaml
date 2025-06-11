@@ -17,7 +17,17 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: Cache Playwright browser
+      uses: actions/cache@v3
+      id: playwright-cache
+      with:
+        path: ~/.cache/ms-playwright
+        key: playwright-${{ inputs.browser }}-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          playwright-${{ inputs.browser }}-${{ runner.os }}-
+
     - name: Install browser and dependencies
+      if: steps.playwright-cache.outputs.cache-hit != 'true'
       shell: bash
       run: |
         npx playwright install ${{ inputs.browser }}
