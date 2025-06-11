@@ -34,6 +34,15 @@ jobs:
       - name: Setup node, npm and cache
         uses: './.github/actions/setup-npm'
 
+      - name: Cache Playwright browsers
+        uses: actions/cache@v3
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-browsers-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            playwright-browsers-${{ runner.os }}-
+
       - name: Set environment variables
         run: |
           {
@@ -54,6 +63,7 @@ jobs:
           echo "matrix=$matrix" >> $GITHUB_OUTPUT
 
       - name: Install Browsers
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
         uses: ./.github/actions/install-browser
         with:
           browser: ${{ github.event.inputs.browser }}
@@ -69,6 +79,21 @@ jobs:
 
       - name: Setup node, npm and cache
         uses: './.github/actions/setup-npm'
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v3
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-browsers-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            playwright-browsers-${{ runner.os }}-
+
+      - name: Install Browsers
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        uses: ./.github/actions/install-browser
+        with:
+          browser: ${{ github.event.inputs.browser }}
 
       - name: Run Playwright tests
         run: |
