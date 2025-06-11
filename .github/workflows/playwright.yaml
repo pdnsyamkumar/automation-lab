@@ -44,10 +44,13 @@ jobs:
       - name: Create test matrix
         id: create-matrix
         run: |
-          matrix=$(jq -n \
-            --argjson shards "[$(seq -s, 1 ${{ github.event.inputs.shards }})]" \
-            --arg total "${{ github.event.inputs.shards }}" \
-            '{shard: $shards, total_shards: [$total]}')
+          echo "Creating matrix..."
+          shards=${{ github.event.inputs.shards }}
+          if [ -z "$shards" ]; then
+            shards=1
+          fi
+          shardArray=$(seq -s, 1 $shards | sed 's/,/","/g')
+          matrix=$(echo "{\"shard\": [\"$shardArray\"], \"total_shards\": [\"$shards\"]}")
           echo "matrix=$matrix" >> $GITHUB_OUTPUT
 
       - name: Install Browsers
