@@ -1,4 +1,12 @@
 import { defineConfig, devices } from '@playwright/test'
+import dotenv from 'dotenv'
+import path from 'path'
+
+dotenv.config({ path: path.join(process.cwd(), '.env') })
+
+if (!process.env.BASE_URL) {
+  throw new Error('BASE_URL environment variable is not set')
+}
 const baseURL = process.env.BASE_URL
   ? process.env.BASE_URL
   : 'https://automationexercise.com'

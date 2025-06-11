@@ -1,33 +1,37 @@
 name: 'Setup npm and Cache'
 description: 'Install npm, setup npm cache, and install dependencies'
 
+inputs:
+  node-version:
+    description: 'Node.js version to use'
+    required: false
+    default: '20'
+
 runs:
   using: 'composite'
   steps:
-    - uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-
     - name: Cache node modules
       id: cache-npm
       uses: actions/cache@v4
-      env:
-        cache-name: cache-node-modules
       with:
-        # npm cache files are stored in `~/.npm` on Linux/macOS
-        path: ~/.npm
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+        path: |
+          ~/.npm
+          node_modules
+        key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}-
-          ${{ runner.os }}-build-
-          ${{ runner.os }}-
+          ${{ runner.os }}-npm-
 
-    - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
-      shell: bash
-      name: List the state of node modules
-      continue-on-error: true
-      run: npm list
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
 
     - name: Install dependencies
+      if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
       run: npm ci
+      shell: bash
+
+    - name: Verify installation
+      run: |
+        node --version && npm --version && npm list --depth=0
       shell: bash

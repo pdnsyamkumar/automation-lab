@@ -20,7 +20,7 @@ test.describe('Registration', async () => {
 
     await test.step(`Step 3: Verify that home page is visible successfully`, async () => {
       await expect(homePage.getNavHomeLink()).toBeVisible()
-      await expect(page).toHaveURL('https://automationexercise.com')
+      await expect(page).toHaveURL('https://www.automationexercise.com')
     })
 
     await test.step(`Step 4: Click on Signup/Login button`, async () => {

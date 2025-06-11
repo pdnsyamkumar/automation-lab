@@ -70,8 +70,3 @@ npx playwright test
 - [Playwright Test Runner](https://playwright.dev/docs/test-intro)
 
 ```
-
----
-
-Let me know if you'd like a version tailored for JavaScript instead of TypeScript, or if you want to add custom config options (e.g., headless mode, reporters, etc.).
-```
