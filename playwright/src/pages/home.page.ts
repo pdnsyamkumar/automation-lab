@@ -5,7 +5,7 @@ export class HomePage extends BasePage {
     this.page.locator(`.navbar-nav li a[href="/"]`)
 
   async navigateToHomePage() {
-    await this.page.goto(`/`)
+    await this.page.goto(`https://www.automationexercise.com/`)
     await this.page.waitForLoadState('load')
   }
 }

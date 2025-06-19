@@ -31,15 +31,41 @@ export interface AddressInformation {
   mobileNumber: string
 }
 
-export interface SignUpData extends AccountInformation, AddressInformation {}
+export interface SignUpDataForUI
+  extends AccountInformation,
+    AddressInformation {}
+
+export interface SignUpDataForAPI {
+  [key: string]: string | NamePrefix
+  title: string
+  name: string
+  email_address: string
+  password: string
+  days: string
+  months: string
+  years: string
+  newsletter: string
+  optin: string
+  first_name: string
+  last_name: string
+  company: string
+  address1: string
+  address2: string
+  country: string
+  state: string
+  city: string
+  zipcode: string
+  mobile_number: string
+  form_type: string
+}
 
 // Create First and Last Name using Faker
 const firstName = faker.person.firstName()
 const lastName = faker.person.lastName()
 
 // Create Default Sign Up Data using Faker
-const defaultSignUpData: SignUpData = {
-  namePrefix: faker.helpers.arrayElement([NamePrefix.MR_, NamePrefix.MRS_]),
+const defaultSignUpDataForUI: SignUpDataForUI = {
+  namePrefix: NamePrefix.MRS_,
   firstName,
   lastName,
   name: `${firstName} ${lastName}`,
@@ -62,39 +88,100 @@ const defaultSignUpData: SignUpData = {
   mobileNumber: faker.phone.number(),
 }
 
+// Create Default Sign Up Data for API using Faker
+export const defaultSignUpTestDataForAPI: SignUpDataForAPI = {
+  title: NamePrefix.MR_,
+  name: `${firstName} ${lastName}`,
+  email_address: faker.internet.email({ firstName, lastName }),
+  password: 'TestLab@123',
+  days: faker.number.int({ min: 1, max: 28 }).toString(),
+  months: faker.date.month(),
+  years: faker.date.past({ years: 60 }).getFullYear().toString(),
+  newsletter: '1',
+  optin: '1',
+  first_name: firstName,
+  last_name: lastName,
+  company: faker.company.name(),
+  address1: faker.location.streetAddress(),
+  address2: faker.location.secondaryAddress(),
+  country: Country.INDIA,
+  state: faker.location.state(),
+  city: faker.location.city(),
+  zipcode: faker.location.zipCode(),
+  mobile_number: faker.phone.number().toString(),
+  form_type: 'create_account',
+}
+
 export class SignUpTestData extends BaseTestData {
   /**
-   * Get sign up test data with optional overrides
+   * Get sign up test data for UI with optional overrides
    * @param overrides - Partial data to override default values
-   * @returns SignUpData with overridden values
+   * @returns SignUpDataForUI with overridden values
    */
-  getSignUpData(overrides?: Partial<SignUpData>): SignUpData {
-    return this.getData(defaultSignUpData, overrides)
+  getSignUpDataForUI(overrides?: Partial<SignUpDataForUI>): SignUpDataForUI {
+    return this.getData(defaultSignUpDataForUI, overrides)
   }
 
   /**
-   * Get sign up test data excluding specified fields
-   * @param excludes - Array of fields to exclude from the data
-   * @returns SignUpData with specified fields excluded
+   * Get sign up test data for API with optional overrides
+   * @param overrides - Partial data to override default values
+   * @returns SignUpDataForAPI with overridden values
    */
-  getSignUpDataWithExcludes(
-    excludes: (keyof SignUpData)[]
-  ): Partial<SignUpData> {
-    return this.getDataWithExcludes(defaultSignUpData, excludes)
+  getSignUpDataForAPI(overrides?: Partial<SignUpDataForAPI>): SignUpDataForAPI {
+    return this.getData(defaultSignUpTestDataForAPI, overrides)
   }
 
   /**
-   * Get sign up test data with specific overrides and exclusions
+   * Get sign up test data for UI excluding specified fields
+   * @param excludes - Array of fields to exclude from the data
+   * @returns Partial SignUpDataForUI with specified fields excluded
+   */
+  getSignUpDataForUIWithExcludes(
+    excludes: (keyof SignUpDataForUI)[]
+  ): Partial<SignUpDataForUI> {
+    return this.getDataWithExcludes(defaultSignUpDataForUI, excludes)
+  }
+
+  /**
+   * Get sign up test data for API excluding specified fields
+   * @param excludes - Array of fields to exclude from the data
+   * @returns Partial SignUpDataForAPI with specified fields excluded
+   */
+  getSignUpDataForAPIWithExcludes(
+    excludes: (keyof SignUpDataForAPI)[]
+  ): Partial<SignUpDataForAPI> {
+    return this.getDataWithExcludes(defaultSignUpTestDataForAPI, excludes)
+  }
+
+  /**
+   * Get sign up test data for UI with specific overrides and exclusions
    * @param overrides - Partial data to override default values
    * @param excludes - Array of fields to exclude from the data
-   * @returns SignUpData with overridden values and specified fields excluded
+   * @returns Partial SignUpDataForUI with overridden values and specified fields excluded
    */
-  getSignUpDataWithOverridesAndExcludes(
-    overrides: Partial<SignUpData>,
-    excludes: (keyof SignUpData)[]
-  ): Partial<SignUpData> {
+  getSignUpDataForUIWithOverridesAndExcludes(
+    overrides: Partial<SignUpDataForUI>,
+    excludes: (keyof SignUpDataForUI)[]
+  ): Partial<SignUpDataForUI> {
     return this.getDataWithOverridesAndExcludes(
-      defaultSignUpData,
+      defaultSignUpDataForUI,
+      overrides,
+      excludes
+    )
+  }
+
+  /**
+   * Get sign up test data for API with specific overrides and exclusions
+   * @param overrides - Partial data to override default values
+   * @param excludes - Array of fields to exclude from the data
+   * @returns Partial SignUpDataForAPI with overridden values and specified fields excluded
+   */
+  getSignUpDataForAPIWithOverridesAndExcludes(
+    overrides: Partial<SignUpDataForAPI>,
+    excludes: (keyof SignUpDataForAPI)[]
+  ): Partial<SignUpDataForAPI> {
+    return this.getDataWithOverridesAndExcludes(
+      defaultSignUpTestDataForAPI,
       overrides,
       excludes
     )

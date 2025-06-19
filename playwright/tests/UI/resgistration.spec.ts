@@ -4,7 +4,8 @@ import { LabelMessages } from '@utilities/enums'
 
 test.describe('Registration', async () => {
   const signUpData = new SignUpTestData()
-  const defaultSignUpData = signUpData.getSignUpData()
+  const signUpDataForUI = signUpData.getSignUpDataForUI()
+  console.log(signUpDataForUI)
 
   test('Test Case 1: Register User', async ({
     homePage,
@@ -37,8 +38,8 @@ test.describe('Registration', async () => {
 
     await test.step(`Step 6: Enter name and email address`, async () => {
       await signUpPage.fillNameAndEmailAddress(
-        defaultSignUpData.name,
-        defaultSignUpData.email
+        signUpDataForUI.name,
+        signUpDataForUI.email
       )
     })
 
@@ -54,11 +55,11 @@ test.describe('Registration', async () => {
             Step 9. Fill details: Title, Name, Email, Password, Date of birth
             Step 10. Select checkbox 'Sign up for our newsletter!'
             Step 11. Select checkbox 'Receive special offers from our partners!'`, async () => {
-      await signUpPage.enterAccountInformation(defaultSignUpData)
+      await signUpPage.enterAccountInformation(signUpDataForUI)
     })
 
     await test.step(`Step 12. Fill details: First name, Last name, Company, Address, Address2, Country, State, City, Zipcode, Mobile Number`, async () => {
-      await signUpPage.fillAddressInformation(defaultSignUpData)
+      await signUpPage.fillAddressInformation(signUpDataForUI)
     })
 
     await test.step(`Step 13: Click 'Create Account' button`, async () => {
@@ -78,7 +79,7 @@ test.describe('Registration', async () => {
 
     await test.step(`Step 16: Verify that 'Logged in as username' is visible`, async () => {
       await expect(topNavigationPage).toHaveNavOption(
-        `Logged in as ${defaultSignUpData.name}`
+        `Logged in as ${signUpDataForUI.name}`
       )
     })
 

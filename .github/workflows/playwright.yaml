@@ -1,11 +1,11 @@
-name: "Playwright Tests"
+name: 'Playwright Tests'
 on:
   workflow_dispatch:
     inputs:
       browser:
-        description: "Browser to run tests in"
+        description: 'Browser to run tests in'
         required: true
-        default: "chromium"
+        default: 'chromium'
         type: choice
         options:
           - chromium
@@ -15,20 +15,20 @@ on:
           - edge
           - safari
       shards:
-        description: "Number of shards to run"
+        description: 'Number of shards to run'
         required: true
-        default: "1"
+        default: '1'
       retries:
-        description: "Number of retries for failed tests"
+        description: 'Number of retries for failed tests'
         required: true
-        default: "0"
+        default: '0'
       workers:
-        description: "Number of workers to run in parallel"
+        description: 'Number of workers to run in parallel'
         required: true
-        default: "1"
+        default: '1'
 
 env:
-  BASE_URL: "https://automationexercise.com"
+  BASE_URL: 'https://automationexercise.com'
 
 jobs:
   setup-environment:
@@ -98,7 +98,7 @@ jobs:
             --workers=${{ github.event.inputs.workers }} \
             --retries=${{ github.event.inputs.retries }} \
             --reporter=blob \
-      
+
       - name: Upload test artifacts
         if: always()
         uses: actions/upload-artifact@v4

@@ -69,9 +69,17 @@ export default defineConfig({
     testIdAttribute: 'data-qa',
     baseURL,
     viewport: { width: 1920, height: 1280 },
-    video: 'on'
+    video: 'on',
   },
   projects: [
+    {
+      name: 'auth',
+      testMatch: '**/playwright/auth/**/*.spec.ts',
+      testDir: '/playwright/auth',
+      use: {
+        ...getBrowserDevice(),
+      },
+    },
     {
       name: 'tests',
       testMatch: '**/playwright/tests/**/*.spec.ts',
