@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker'
-import { BaseTestData } from '@testData/base-test-data'
+import { BaseTestData } from '@testData/base.testdata'
 import { NamePrefix, Country } from '@utilities/enums'
 
 export interface DOB {
