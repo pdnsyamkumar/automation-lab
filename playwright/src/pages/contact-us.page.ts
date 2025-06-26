@@ -13,8 +13,7 @@ export class ContactUsPage extends BasePage {
   readonly getEmailInput = () => this.page.getByTestId(`email`)
   readonly getSubjectInput = () => this.page.getByTestId(`subject`)
   readonly getMessageInput = () => this.page.getByTestId(`message`)
-  readonly getUploadFileInput = () =>
-    this.page.locator(`input[type="file"]`)
+  readonly getUploadFileInput = () => this.page.locator(`input[type="file"]`)
   readonly getSubmitButton = () => this.page.getByTestId(`submit-button`)
   readonly getSuccessMessage = () =>
     this.page.locator(`//div[contains(@class, 'status')]`)
