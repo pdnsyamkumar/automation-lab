@@ -1,0 +1,329 @@
+{
+  "cookies": [
+    {
+      "name": "csrftoken",
+      "value": "C3z4L8m3mpTYVV54W4zZG3ijd37XTwqxBfim82Bqmqr9L8Qt8gI4ShgYi19E3Vc7",
+      "domain": "www.automationexercise.com",
+      "path": "/",
+      "expires": 1781800981.914253,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "IDE",
+      "value": "AHWqTUnTF8DBI8FUOmmalU0czui8exjOsFYuBT12iXJe50Ef9Smc3DaNYZbMhhHkFZM",
+      "domain": ".doubleclick.net",
+      "path": "/",
+      "expires": 1784911396.247015,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "APC",
+      "value": "AfxxVi6UqQgzfvw2ult3zSPQcqv04KtsFRHASXiWziOsi6L8xA3JJw",
+      "domain": ".doubleclick.net",
+      "path": "/",
+      "expires": 1765903396.532883,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "receive-cookie-deprecation",
+      "value": "1",
+      "domain": ".doubleclick.net",
+      "path": "/",
+      "expires": 1765903397.060734,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "CMPS",
+      "value": "5345",
+      "domain": ".casalemedia.com",
+      "path": "/",
+      "expires": 1758127396.619065,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "ar_debug",
+      "value": "1",
+      "domain": ".doubleclick.net",
+      "path": "/",
+      "expires": 1752943397.060636,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "CMID",
+      "value": "aFQ.JRdaRCQACS6vBdaZagAA",
+      "domain": ".casalemedia.com",
+      "path": "/",
+      "expires": 1781887396.902791,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "CMPRO",
+      "value": "5345",
+      "domain": ".casalemedia.com",
+      "path": "/",
+      "expires": 1758127396.902858,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "__gads",
+      "value": "ID=abaa9ea8149934f2:T=1750351396:RT=1750351396:S=ALNI_MaVFRhlAJ9TRSSNO1LGBmYLNbOt4Q",
+      "domain": ".automationexercise.com",
+      "path": "/",
+      "expires": 1784047396,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "__gpi",
+      "value": "UID=000011340f500684:T=1750351396:RT=1750351396:S=ALNI_MbFzMzjJusrEeaU9ITLNfFH8K3Bfw",
+      "domain": ".automationexercise.com",
+      "path": "/",
+      "expires": 1784047396,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "__eoi",
+      "value": "ID=5570986efc3b3e53:T=1750351396:RT=1750351396:S=AA-AfjbzVF_1pUDv3Qi1-5hxAaVh",
+      "domain": ".automationexercise.com",
+      "path": "/",
+      "expires": 1765903396,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "b",
+      "value": "68543E256A9F3EB3CC2FFC44_",
+      "domain": ".blismedia.com",
+      "path": "/",
+      "expires": 1781891396.95938,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "TDID",
+      "value": "6a497758-6596-4397-a8d2-3d882ac87970",
+      "domain": ".adsrvr.org",
+      "path": "/",
+      "expires": 1781887397.064431,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "TDCPM",
+      "value": "CAESFQoGZ29vZ2xlEgsI3KGx0c3Wlz4QBRgFIAEoAjILCL6r9_3j1pc-EAU4AQ..",
+      "domain": ".adsrvr.org",
+      "path": "/",
+      "expires": 1781887397.064554,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "DotomiTest",
+      "value": "613407801031139373",
+      "domain": ".dotomi.com",
+      "path": "/",
+      "expires": 1750351427.089441,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "everest_g_v2",
+      "value": "g_surferid~aFQ_JQAAAFwwYQBL",
+      "domain": ".everesttech.net",
+      "path": "/",
+      "expires": 1781887397.13427,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_auid",
+      "value": "PQLHXjJZCuak0gsqJj5UaA",
+      "domain": ".c.appier.net",
+      "path": "/",
+      "expires": 1781887397.177971,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_gu",
+      "value": "CAESEBKeMxeUr3enk5N3_jBD4Og",
+      "domain": ".c.appier.net",
+      "path": "/",
+      "expires": 1752943397.178039,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_tracker",
+      "value": "%7B%22UUID%22%3A%22C91F5FAD-DD83-4CA3-27C9-0E95CCE41DEA%22%7D",
+      "domain": ".travelaudience.com",
+      "path": "/",
+      "expires": 1784479396.244621,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "tuuid",
+      "value": "b56fb6f9-4760-43b9-8cd3-0702e0689acb",
+      "domain": ".bidswitch.net",
+      "path": "/",
+      "expires": 1781887397.420614,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "c",
+      "value": "1750351398",
+      "domain": ".bidswitch.net",
+      "path": "/",
+      "expires": 1781887397.273684,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "tuuid_lu",
+      "value": "1750351398",
+      "domain": ".bidswitch.net",
+      "path": "/",
+      "expires": 1781887397.420755,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "XANDR_PANID",
+      "value": "dWo3FlgqZvMGe0E53QJyemfQct6QwH3rok-Z6wGW1LOPia3bDrCJRcmWI8RmuUqlNEWZ43soVjvaPU6YkZFQG_gbWdQMfjtmLc7x7CEerBQ.",
+      "domain": ".adnxs.com",
+      "path": "/",
+      "expires": 1758127397.328729,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "anj",
+      "value": "dTM7k!M41.D>6NRF']wIg2E?cf54pe!@wnfH8K6pQK`!5=E<*L5?%KDfND@E0k!MahrUPc5=f1h4KUQSAGFlW%b!D`*bpRz*qF1`*b_ux*=rnB",
+      "domain": ".adnxs.com",
+      "path": "/",
+      "expires": 1758127397.32881,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "uuid2",
+      "value": "436844226065322806",
+      "domain": ".adnxs.com",
+      "path": "/",
+      "expires": 1758127397.328829,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "FCNEC",
+      "value": "%5B%5B%22AKsRol-oNa19AkrjQSJ0Uy1JDxZJXZ4gLdcg60GscTiT5_PSSrZpt8o3yTtvuwEDsP4aCgRXylEctl13PTYnywdXukQ_VQ3wdaQBVh-Nto1-hWbbQVqMq-V0uhs0Z68AwGMBIotD_9kBMCNcoavqjgNrZOCjuBNsPQ%3D%3D%22%5D%5D",
+      "domain": ".automationexercise.com",
+      "path": "/",
+      "expires": 1781887397,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "zuuid",
+      "value": "448d9ff4-4214-4a8c-88f7-00c3be9b6030",
+      "domain": ".sportradarserving.com",
+      "path": "/",
+      "expires": 1781800997.971688,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "c",
+      "value": "1750351398",
+      "domain": ".sportradarserving.com",
+      "path": "/",
+      "expires": 1781800997.836126,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "zuuid_lu",
+      "value": "1750351398",
+      "domain": ".sportradarserving.com",
+      "path": "/",
+      "expires": 1781800997.97177,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "zuuid_k",
+      "value": "1",
+      "domain": ".sportradarserving.com",
+      "path": "/",
+      "expires": 1781800997.971796,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "zuuid_k_lu",
+      "value": "1750351398",
+      "domain": ".sportradarserving.com",
+      "path": "/",
+      "expires": 1781800997.971812,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "https://www.automationexercise.com",
+      "localStorage": [
+        {
+          "name": "google_adsense_settings",
+          "value": "{\"ca-pub-1677597403311019\":[\"ca-pub-1677597403311019\"]}"
+        },
+        {
+          "name": "google_ama_config",
+          "value": "[[[[null,0,null,[],null,null,\"SECTION#form\"],4,[\"10px\",\"185px\",1],[3],null,[],[],1,[],[]],[[null,1,null,[],null,null,\"BODY>SECTION>DIV.container>DIV.row\"],4,[\"10px\",\"10px\",0],[3],null,[],[],1,[],[]],[[null,0,null,[],null,null,\"DIV.footer-bottom\"],2,[\"10px\",\"10px\",0],[5],null,[],[],1,[],[]],[[null,0,null,[],null,null,\"BODY>SECTION>DIV.container>DIV.row>DIV\"],3,[\"10px\",\"10px\",0],[0],null,[],[],1,[],[]],[[null,0,null,[],null,null,\"BODY>FOOTER#footer\"],1,[\"10px\",\"10px\",0],[0],null,[],[],1,[],[2,4]],[[null,0,null,[],null,null,\"DIV#slider-carousel\"],4,[\"10px\",\"10px\",1],[1],null,[],[],1,[],[]],[[null,0,null,[],null,null,\"BODY\"],2,[\"10px\",\"10px\",1],[4],null,[],[],1,[],[]],[[null,0,null,[],null,null,\"DIV.footer-bottom\"],3,[\"10px\",\"10px\",0],[5],null,[],[],1,[],[]],[[null,0,null,[],null,null,\"BODY\"],3,[\"10px\",\"10px\",1],[5],null,[],[],1,[],[]],[[null,2,null,[],null,null,\"DIV#accordian>DIV.panel.panel-default>DIV.panel-heading>.panel-title\"],1,[\"10px\",\"10px\",0],[0],null,[],[],1,[],[]],[[null,0,null,[],null,null,\"DIV.footer-widget\"],1,[\"10px\",\"10px\",0],[3],null,[],[],1,[],[]],[[null,1,null,[],null,null,\"DIV#accordian>DIV.panel.panel-default>DIV.panel-heading>.panel-title\"],1,[\"10px\",\"10px\",0],[0],null,[],[],1,[],[]],[[null,0,null,[],null,null,\"DIV#accordian\"],4,[\"10px\",\"35px\",0],[0],null,[],[],1,[],[]],[[null,0,null,[],null,null,\"DIV.footer-widget>DIV.container>DIV.row\"],4,[\"10px\",\"10px\",0],[3],null,[],[],1,[],[]],[[null,0,null,[],null,null,\"DIV#accordian>DIV.panel.panel-default>DIV.panel-heading>.panel-title\"],1,[\"10px\",\"30px\",1],[0],null,[],[],1,[],[]],[[null,1,null,[],null,null,\"BODY>SECTION>DIV.container\"],4,[\"10px\",\"10px\",0],[3],null,[],[],1,[],[]],[[null,0,null,[],null,null,\"DIV.footer-bottom\"],4,[\"10px\",\"10px\",0],[5],null,[],[],1,[],[]]],[],[1750437782926],\"20250616_103436\",[],[[[[null,0,null,[],null,null,\"DIV#slider-carousel>DIV.carousel-inner>DIV.item.active.left>DIV\"],[null,null,null,[],null,null,\"P\"],null,[null,null,null,[],null,null,\"H1,H2,P\"]]]],[[null,[1,3,2,5],null,\"4334590153\",[],[],[0,2],null,null,[1,null,2,16,480,1],[]]],[null,[[1,\"1vp\",[[4,\"2vp\",\"2vp\"],[6,\"3vp\",\"3vp\"]],8,\"1vp\",0.30000001,[\"0.2vp\",\"0vp\",2]],[2,\"300px\",[[4,\"600px\",\"600px\"],[6,\"900px\",\"900px\"]],8,\"300px\",0.30000001,[\"60px\",\"0px\",2]]]],null,null,null,null,null,null,[null,null,null,null,null,null,null,null,null,null,null,0],null,null,[1,null,null,[]],null,[721167130],null,null,[1750229265847],null,null,null,null,null,null,null,null,null,[[\"Toggle toolbar expansion\",\"Toggle privacy and legal settings display\",\"Dismiss privacy and legal settings display\"]]]"
+        }
+      ]
+    }
+  ]
+}
