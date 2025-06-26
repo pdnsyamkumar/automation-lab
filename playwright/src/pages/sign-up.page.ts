@@ -3,7 +3,7 @@ import {
   AccountInformation,
   AddressInformation,
   DOB,
-} from '@testData/signup-test-data'
+} from '@testData/signup.testdata'
 import { BasePage } from '@pages/base.page'
 
 // ------SignUpPage Class ------

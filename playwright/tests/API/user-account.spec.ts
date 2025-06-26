@@ -1,4 +1,4 @@
-import { SignUpTestData } from '@testData/signup-test-data'
+import { SignUpTestData } from '@testData/signup.testdata'
 import { test, expect } from '@utilities/base-test'
 import { getCsrfTokenFromAuth } from '@utilities/helpers'
 
