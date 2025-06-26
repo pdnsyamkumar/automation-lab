@@ -11,7 +11,7 @@ inputs:
       - firefox
       - webkit
       - chrome
-      - edge
+      - msedge
       - safari
 
 runs:
