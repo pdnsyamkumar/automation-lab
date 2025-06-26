@@ -27,7 +27,7 @@ on:
         required: true
         default: '1'
       tags:
-        description: 'Tags to filter tests (comma-separated) Example: @smoke,@regression'
+        description: 'Tags to filter tests. Supports: comma-separated (OR, e.g. @smoke,@regression), ampersand-separated (AND, e.g. @smoke&@regression), and ! for invert (e.g. !@wip)'
         required: false
         default: ''
         type: string
@@ -75,6 +75,38 @@ jobs:
         with:
           browser: ${{ github.event.inputs.browser }}
 
+      - name: Prepare grep arguments
+        id: prepare-grep
+        run: |
+          tags="${{ github.event.inputs.tags }}"
+          grep_arg=""
+          grep_invert_arg=""
+          if [[ -n "$tags" ]]; then
+            # Handle invert (starts with !)
+            if [[ "$tags" == !* ]]; then
+              tags="${tags//!/}" # Remove all '!'
+              tags="${tags//,/|}" # OR logic for invert
+              grep_invert_arg="--grep-invert \"$tags\""
+            # Handle AND (contains &)
+            elif [[ "$tags" == *"&"* ]]; then
+              tags_arr=(${tags//&/ })
+              regex="(?=.*${tags_arr[0]})"
+              for tag in "${tags_arr[@]:1}"; do
+                regex="${regex}(?=.*${tag})"
+              done
+              grep_arg="--grep \"$regex\""
+            # Handle OR (comma separated)
+            elif [[ "$tags" == *,* ]]; then
+              tags="${tags//,/|}"
+              grep_arg="--grep \"$tags\""
+            # Single tag
+            else
+              grep_arg="--grep \"$tags\""
+            fi
+          fi
+          echo "GREP_ARG=$grep_arg" >> $GITHUB_ENV
+          echo "GREP_INVERT_ARG=$grep_invert_arg" >> $GITHUB_ENV
+
   run-tests:
     needs: setup-environment
     runs-on: ubuntu-latest
@@ -102,7 +134,7 @@ jobs:
             --project=tests \
             --workers=${{ github.event.inputs.workers }} \
             --retries=${{ github.event.inputs.retries }} \
-            --grep=${{ github.event.inputs.tags }} \
+            $GREP_ARG $GREP_INVERT_ARG \
             --reporter=blob \
 
       - name: Upload test artifacts
