@@ -12,7 +12,7 @@ on:
           - firefox
           - webkit
           - chrome
-          - edge
+          - msedge
           - safari
       shards:
         description: 'Number of shards to run'
