@@ -10,7 +10,7 @@ test.describe('Products Page Tests', () => {
     })
   })
 
-  test(`Test Case 8: Verify All Products and product detail page`, async ({
+  test(`Test Case 8: Verify All Products and product detail page`, {tag: '@Products'}, async ({
     homePage,
     productsPage,
     page,
@@ -51,7 +51,7 @@ test.describe('Products Page Tests', () => {
     })
   })
 
-  test(`Test Case 9: Search Product`, async ({
+  test(`Test Case 9: Search Product`, {tag: '@Products'}, async ({
     homePage,
     productsPage,
   }) => {
@@ -82,7 +82,7 @@ test.describe('Products Page Tests', () => {
     })
   })
 
-  test('Test Case 21: Add review on product', async ({
+  test('Test Case 21: Add review on product', {tag: '@Products'},async ({
     productsPage,
     page,
   }) => {
