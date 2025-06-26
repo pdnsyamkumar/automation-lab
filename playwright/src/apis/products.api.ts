@@ -2,7 +2,7 @@ import { BaseApi } from './base.api'
 
 export class ProductsApi extends BaseApi {
   async getProducts() {
-    const url = 'https://automationexercise.com/api/productsList'
+    const url = '/productsList'
     return this.get(url)
   }
 

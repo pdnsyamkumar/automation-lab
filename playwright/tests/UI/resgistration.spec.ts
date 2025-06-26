@@ -21,8 +21,8 @@ test.describe('Registration', async () => {
 
     await test.step(`Step 3: Verify that home page is visible successfully`, async () => {
       await expect(homePage.getNavHomeLink()).toBeVisible()
-      const url = await page.url()
-      await expect(url).toContain('automationexercise.com')
+      const url = page.url()
+      expect(url).toContain('automationexercise.com')
     })
 
     await test.step(`Step 4: Click on Signup/Login button`, async () => {
@@ -37,10 +37,10 @@ test.describe('Registration', async () => {
     })
 
     await test.step(`Step 6: Enter name and email address`, async () => {
-      await signUpPage.fillNameAndEmailAddress(
-        signUpDataForUI.name,
-        signUpDataForUI.email
-      )
+      await signUpPage.fillNameAndEmailAddress({
+        name: signUpDataForUI.name,
+        email: signUpDataForUI.email,
+      })
     })
 
     await test.step(`Step 7: Click 'Signup' button`, async () => {
@@ -55,7 +55,7 @@ test.describe('Registration', async () => {
             Step 9. Fill details: Title, Name, Email, Password, Date of birth
             Step 10. Select checkbox 'Sign up for our newsletter!'
             Step 11. Select checkbox 'Receive special offers from our partners!'`, async () => {
-      await signUpPage.enterAccountInformation(signUpDataForUI)
+      await signUpPage.fillAccountInformation(signUpDataForUI)
     })
 
     await test.step(`Step 12. Fill details: First name, Last name, Company, Address, Address2, Country, State, City, Zipcode, Mobile Number`, async () => {

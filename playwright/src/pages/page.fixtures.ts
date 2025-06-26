@@ -3,6 +3,7 @@ import { LoginPage } from '@pages/login.page'
 import { SignUpPage } from '@pages/sign-up.page'
 import { HomePage } from '@pages/home.page'
 import { TopNavigationPage } from '@pages/top-navigation.page'
+import { ProductsPage } from '@pages/products.page'
 
 export const pageFixtures = baseTest.extend<PageTypes>({
   loginPage: async ({ page }, use) => {
@@ -20,6 +21,10 @@ export const pageFixtures = baseTest.extend<PageTypes>({
   topNavigationPage: async ({ page }, use) => {
     await use(new TopNavigationPage(page))
   },
+
+  productsPage: async ({ page }, use) => {
+    await use(new ProductsPage(page))
+  },
 })
 
 export interface PageTypes {
@@ -27,4 +32,5 @@ export interface PageTypes {
   signUpPage: SignUpPage
   homePage: HomePage
   topNavigationPage: TopNavigationPage
+  productsPage: ProductsPage
 }
