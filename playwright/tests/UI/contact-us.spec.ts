@@ -1,7 +1,7 @@
 import { test, expect } from '@utilities/base-test'
 
 test.describe('Contact Us Page', () => {
-  test('Test Case 6: Contact Us Form', async ({
+  test('Test Case 6: Contact Us Form', {tag: `@ContactUs`}, async ({
     contactUsPage,
     contactUsTestData,
     homePage,
