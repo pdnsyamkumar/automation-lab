@@ -7,7 +7,7 @@ test.describe('Registration', async () => {
   const signUpDataForUI = signUpData.getSignUpDataForUI()
   console.log(signUpDataForUI)
 
-  test('Test Case 1: Register User', async ({
+  test('Test Case 1: Register User', {tag: `@Registration`}, async ({
     homePage,
     page,
     signUpPage,
