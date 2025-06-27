@@ -3,7 +3,7 @@ import { test, expect } from '@utilities/base-test'
 test.describe('Contact Us Page', () => {
   test(
     'Test Case 6: Contact Us Form',
-    { tag: `@ContactUs` },
+    { tag: [`@ContactUs`] },
     async ({ contactUsPage, contactUsTestData, homePage }) => {
       await test.step(`Step 1: Launch browser`, async () => {})
 
