@@ -128,6 +128,16 @@ jobs:
         uses: ./.github/actions/install-browser
         with:
           browser: ${{ github.event.inputs.browser }}
+      
+      - name: Print the User inputs
+        run: |
+          echo "Running tests with the following parameters:"
+          echo "Browser: ${{ github.event.inputs.browser }}"
+          echo "Shards: ${{ matrix.total_shards }}"
+          echo "Shard: ${{ matrix.shard }}"
+          echo "Retries: ${{ github.event.inputs.retries }}"
+          echo "Workers: ${{ github.event.inputs.workers }}"
+          echo "Tags: ${{ github.event.inputs.tags }}"
 
       - name: Run Playwright tests
         run: |
