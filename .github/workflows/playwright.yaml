@@ -42,6 +42,8 @@ jobs:
       image: mcr.microsoft.com/playwright:v1.40.0-focal
     outputs:
       matrix: ${{ steps.create-matrix.outputs.matrix }}
+      grep-arg: ${{ steps.prepare-grep.outputs.grep-arg }}
+      grep-invert-arg: ${{ steps.prepare-grep.outputs.grep-invert-arg }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -105,8 +107,8 @@ jobs:
               grep_arg="--grep \"$tags\""
             fi
           fi
-          echo "GREP_ARG=$grep_arg" >> $GITHUB_ENV
-          echo "GREP_INVERT_ARG=$grep_invert_arg" >> $GITHUB_ENV
+          echo "grep-arg=$grep_arg" >> $GITHUB_OUTPUT
+          echo "grep-invert-arg=$grep_invert_arg" >> $GITHUB_OUTPUT
 
   run-tests:
     needs: setup-environment
@@ -135,7 +137,7 @@ jobs:
             --project=tests \
             --workers=${{ github.event.inputs.workers }} \
             --retries=${{ github.event.inputs.retries }} \
-            $GREP_ARG $GREP_INVERT_ARG \
+            ${{ needs.setup-environment.outputs.grep-arg }} ${{ needs.setup-environment.outputs.grep-invert-arg }} \
             --reporter=blob \
 
       - name: Upload test artifacts
