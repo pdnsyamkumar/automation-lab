@@ -38,8 +38,6 @@ env:
 jobs:
   setup-environment:
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.52.0-focal
     outputs:
       matrix: ${{ steps.create-matrix.outputs.matrix }}
       grep-arg: ${{ steps.prepare-grep.outputs.grep-arg }}
@@ -113,8 +111,6 @@ jobs:
   run-tests:
     needs: setup-environment
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.52.0-focal
     strategy:
       matrix: ${{ fromJson(needs.setup-environment.outputs.matrix) }}
     steps:
@@ -162,8 +158,6 @@ jobs:
     if: always()
     needs: run-tests
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.40.0-focal
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
