@@ -11,7 +11,7 @@ export class HomePage extends BasePage {
    * Navigates to the home page and waits for the page to load
    */
   async navigateToHomePage() {
-    await this.page.goto('https://www.automationexercise.com/')
+    await this.page.goto('https://automationexercise.com')
     await this.page.waitForLoadState('load')
   }
 }

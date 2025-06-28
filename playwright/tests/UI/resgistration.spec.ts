@@ -1,3 +1,4 @@
+import { exitingUserData } from '@testData/existing_user_data'
 import { SignUpTestData } from '@testData/signup.testdata'
 import { test, expect } from '@utilities/base-test'
 import { LabelMessages } from '@utilities/enums'
@@ -5,7 +6,15 @@ import { LabelMessages } from '@utilities/enums'
 test.describe('Registration', async () => {
   const signUpData = new SignUpTestData()
   const signUpDataForUI = signUpData.getSignUpDataForUI()
-  console.log(signUpDataForUI)
+
+  test.beforeEach('Navigate to Automation Exercise', async ({ homePage }) => {
+    await test.step(`Step 1: Launch browser`, async () => {})
+
+    await test.step(`Step 2: Navigate to url 'https://automationexercise.com'`, async () => {
+      await homePage.navigateToHomePage()
+      await expect(homePage.getNavHomeLink()).toBeVisible()
+    })
+  })
 
   test(
     'Test Case 1: Register User',
@@ -94,4 +103,34 @@ test.describe('Registration', async () => {
       })
     }
   )
+
+  test('Test Case 3: Login User with incorrect email and password', async ({
+    signUpPage,
+    loginPage,
+  }) => {
+    await test.step(`
+      Step 4: Click on Signup/Login button
+      Step 5: Verify 'Login to your account' is visible`, async () => {
+      await signUpPage.getSignUp_LoginLink().click()
+      await expect(loginPage.getLoginLabel()).toBeVisible()
+    })
+
+    await test.step(`Step 6: Enter incorrect email address and password`, async () => {
+      await loginPage.fillLoginForm({
+        email: 'incorrect@gmail.com',
+        password: 'incorrectPassword@123',
+      })
+    })
+
+    await test.step(`Step 7: Click 'login' button`, async () => {
+      await loginPage.clickOnLoginButton()
+    })
+
+    await test.step(`Step 8: Verify error 'Your email or password is incorrect!' is visible`, async () => {
+      await expect(loginPage.getErrorMessage()).toBeVisible()
+      await expect(loginPage.getErrorMessage()).toHaveText(
+        'Your email or password is incorrect!'
+      )
+    })
+  })
 })

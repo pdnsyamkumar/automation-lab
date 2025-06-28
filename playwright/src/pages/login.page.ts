@@ -8,7 +8,8 @@ export class LoginPage extends BasePage {
   readonly getEmailAddressInput = () => this.page.getByTestId('login-email')
   readonly getPasswordInput = () => this.page.getByTestId('login-password')
   readonly getLoginButton = () => this.page.getByTestId('login-button')
-
+  readonly getErrorMessage = () =>
+    this.page.locator(`//form[@action="/login"]/p`)
   // ------ Actions ------
   /**
    * Fills the login form with the provided email and password
@@ -23,5 +24,10 @@ export class LoginPage extends BasePage {
   }) {
     await this.getEmailAddressInput().fill(email)
     await this.getPasswordInput().fill(password)
+  }
+
+  async clickOnLoginButton() {
+    await this.getLoginButton().click()
+    await this.page.waitForLoadState('load')
   }
 }
