@@ -12,7 +12,7 @@ test.describe('Products Page Tests', () => {
 
   test(
     `Test Case 8: Verify All Products and product detail page`,
-    { tag: '@Products' },
+    { tag: ['@Products'] },
     async ({ homePage, productsPage, page }) => {
       await test.step(`Step 3:  Verify that home page is visible successfully`, async () => {
         await expect(homePage.getNavHomeLink()).toBeVisible()
@@ -53,7 +53,7 @@ test.describe('Products Page Tests', () => {
 
   test(
     `Test Case 9: Search Product`,
-    { tag: '@Products' },
+    { tag: ['@Products'] },
     async ({ homePage, productsPage }) => {
       await test.step(`Step 3:  Verify that home page is visible successfully`, async () => {
         await expect(homePage.getNavHomeLink()).toBeVisible()
@@ -85,7 +85,7 @@ test.describe('Products Page Tests', () => {
 
   test(
     'Test Case 21: Add review on product',
-    { tag: '@Products' },
+    { tag: ['@Products'] },
     async ({ productsPage, page }) => {
       await test.step(`Step 3: Click on 'Products' button`, async () => {
         await productsPage.navigateToProductsPage()

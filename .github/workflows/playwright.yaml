@@ -12,7 +12,7 @@ on:
           - firefox
           - webkit
           - chrome
-          - edge
+          - msedge
           - safari
       shards:
         description: 'Number of shards to run'
@@ -27,7 +27,7 @@ on:
         required: true
         default: '1'
       tags:
-        description: 'Tags to filter tests (comma-separated) Example: @smoke,@regression'
+        description: 'Tags to filter tests. Supports: comma-separated (OR, e.g. @smoke,@regression), ampersand-separated (AND, e.g. @smoke&@regression), and ! for invert (e.g. !@wip)'
         required: false
         default: ''
         type: string
@@ -42,6 +42,8 @@ jobs:
       image: mcr.microsoft.com/playwright:v1.40.0-focal
     outputs:
       matrix: ${{ steps.create-matrix.outputs.matrix }}
+      grep-arg: ${{ steps.prepare-grep.outputs.grep-arg }}
+      grep-invert-arg: ${{ steps.prepare-grep.outputs.grep-invert-arg }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -75,6 +77,39 @@ jobs:
         with:
           browser: ${{ github.event.inputs.browser }}
 
+      - name: Prepare grep arguments
+        id: prepare-grep
+        shell: bash
+        run: |
+          tags="${{ github.event.inputs.tags }}"
+          grep_arg=""
+          grep_invert_arg=""
+          if [[ -n "$tags" ]]; then
+            # Handle invert (starts with !)
+            if [[ "$tags" == !* ]]; then
+              tags="${tags//!/}" # Remove all '!'
+              tags="${tags//,/|}" # OR logic for invert
+              grep_invert_arg="--grep-invert \"$tags\""
+            # Handle AND (contains &)
+            elif [[ "$tags" == *"&"* ]]; then
+              tags_arr=(${tags//&/ })
+              regex="(?=.*${tags_arr[0]})"
+              for tag in "${tags_arr[@]:1}"; do
+                regex="${regex}(?=.*${tag})"
+              done
+              grep_arg="--grep \"$regex\""
+            # Handle OR (comma separated)
+            elif [[ "$tags" == *,* ]]; then
+              tags="${tags//,/|}"
+              grep_arg="--grep \"$tags\""
+            # Single tag
+            else
+              grep_arg="--grep \"$tags\""
+            fi
+          fi
+          echo "grep-arg=$grep_arg" >> $GITHUB_OUTPUT
+          echo "grep-invert-arg=$grep_invert_arg" >> $GITHUB_OUTPUT
+
   run-tests:
     needs: setup-environment
     runs-on: ubuntu-latest
@@ -93,6 +128,16 @@ jobs:
         uses: ./.github/actions/install-browser
         with:
           browser: ${{ github.event.inputs.browser }}
+      
+      - name: Print the User inputs
+        run: |
+          echo "Running tests with the following parameters:"
+          echo "Browser: ${{ github.event.inputs.browser }}"
+          echo "Shards: ${{ matrix.total_shards }}"
+          echo "Shard: ${{ matrix.shard }}"
+          echo "Retries: ${{ github.event.inputs.retries }}"
+          echo "Workers: ${{ github.event.inputs.workers }}"
+          echo "Tags: ${{ github.event.inputs.tags }}"
 
       - name: Run Playwright tests
         run: |
@@ -102,7 +147,7 @@ jobs:
             --project=tests \
             --workers=${{ github.event.inputs.workers }} \
             --retries=${{ github.event.inputs.retries }} \
-            --grep=${{ github.event.inputs.tags }} \
+            ${{ needs.setup-environment.outputs.grep-arg }} ${{ needs.setup-environment.outputs.grep-invert-arg }} \
             --reporter=blob \
 
       - name: Upload test artifacts
@@ -114,6 +159,7 @@ jobs:
           retention-days: 7
 
   merge-reports:
+    if: always()
     needs: run-tests
     runs-on: ubuntu-latest
     container:

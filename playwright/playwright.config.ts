@@ -3,10 +3,6 @@ import dotenv from 'dotenv'
 import path from 'path'
 
 dotenv.config({ path: path.join(process.cwd(), '.env') })
-
-if (!process.env.BASE_URL) {
-  throw new Error('BASE_URL environment variable is not set')
-}
 const baseURL = process.env.BASE_URL
   ? process.env.BASE_URL
   : 'https://automationexercise.com'
@@ -57,6 +53,7 @@ const getBrowserDevice = () => {
       }
   }
 }
+
 export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
@@ -65,11 +62,12 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: [['list'], ['html', { open: 'always' }]],
   use: {
-    trace: 'on-first-retry',
+    trace: 'on',
+    video: 'on',
+    screenshot: 'on',
     testIdAttribute: 'data-qa',
     baseURL,
     viewport: { width: 1920, height: 1280 },
-    video: 'on',
   },
   projects: [
     {
