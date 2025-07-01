@@ -128,7 +128,7 @@ jobs:
         uses: ./.github/actions/install-browser
         with:
           browser: ${{ github.event.inputs.browser }}
-      
+
       - name: Print the User inputs
         run: |
           echo "Running tests with the following parameters:"

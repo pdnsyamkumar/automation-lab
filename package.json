@@ -1,11 +1,13 @@
 {
   "name": "automation-lab",
   "version": "1.0.0",
+  "type": "module",
   "description": "This project uses [Playwright](https://playwright.dev/) for end-to-end testing of web applications.",
   "main": "index.js",
   "scripts": {
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "lint": "eslint ."
   },
   "author": "",
   "license": "ISC",
@@ -14,7 +16,12 @@
     "@faker-js/faker": "^9.8.0",
     "@playwright/test": "^1.53.0",
     "@types/node": "^22.15.30",
+    "@typescript-eslint/eslint-plugin": "^8.35.0",
+    "@typescript-eslint/parser": "^8.35.0",
     "dotenv": "^16.5.0",
+    "eslint": "^9.30.0",
+    "eslint-plugin-playwright": "^2.2.0",
+    "eslint-plugin-unused-imports": "^4.1.4",
     "prettier": "^3.5.3",
     "typescript": "^5.8.3"
   }
