@@ -71,14 +71,14 @@ async function toShowAddToCartStatus(
       isNot: this.isNot,
     }) +
     '\n\n' +
-    `Expected: ${this.isNot ? 'not ' : ''}{ visible: true, title: "Added!" }\n` +
+    `Expected: ${this.isNot ? 'not ' : ''}{ visible: true, title: "${title}" }\n` +
     `Received: { visible: ${actual.modalVisible}, title: "${actual.title}" }`
 
   return {
     message,
     pass,
     name: assertionName,
-    expected: { visible: !this.isNot, title: 'Added!' },
+    expected: { visible: !this.isNot, title: title },
     actual,
   }
 }

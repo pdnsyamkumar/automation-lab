@@ -7,15 +7,10 @@ test.describe('Contact Us Page', () => {
     async ({ contactUsPage, contactUsTestData, homePage }) => {
       await test.step(`1: Launch browser`, async () => {})
 
-      await test.step(`2: Navigate to url 'https://automationexercise.com'`, async () => {
+      await test.step(`2: Navigate to url 'https://automationexercise.com'
+      Step 3: Verify that home page is visible successfully`, async () => {
         await homePage.navigateToHomePage()
         await expect(homePage.getNavHomeLink()).toBeVisible()
-      })
-
-      await test.step(`4: Click on 'Contact Us' button
-Step 5: Verify 'GET IN TOUCH' is visible`, async () => {
-        await contactUsPage.navigateToContactUsPage()
-        await expect(contactUsPage.getGetInTouchTitle()).toBeVisible()
       })
 
       await test.step(`4: Click on 'Contact Us' button
@@ -31,7 +26,7 @@ Step 5: Verify 'GET IN TOUCH' is visible`, async () => {
       })
 
       await test.step(`7: Upload file`, async () => {
-        await contactUsPage.uploadFile('playwright/test-files', 'sample.pdf')
+        await contactUsPage.uploadFile('test-files', 'sample.pdf')
       })
 
       await test.step(`8: Click 'Submit' button

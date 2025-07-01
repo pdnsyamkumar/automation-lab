@@ -6,11 +6,9 @@ export class CheckBoxComponent {
   async setCheckboxState(locator: Locator, check: boolean) {
     const checkBoxCurrentState = await locator.isChecked()
     if (check && !checkBoxCurrentState) {
-      if (check) {
-        await locator.check()
-      } else {
-        await locator.uncheck()
-      }
+      await locator.check()
+    } else if (!check && checkBoxCurrentState) {
+      await locator.uncheck()
     }
   }
 }

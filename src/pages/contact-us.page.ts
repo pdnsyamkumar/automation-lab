@@ -3,7 +3,7 @@ import { BasePage } from './base.page'
 import path from 'path'
 
 export class ContactUsPage extends BasePage {
-  readonly getContactUsLint = () =>
+  readonly getContactUsLink = () =>
     this.page.getByRole('link', { name: 'Contact Us' })
   readonly getContactUsTitle = () =>
     this.page.getByRole('heading', { name: 'Contact Us' })
@@ -23,7 +23,7 @@ export class ContactUsPage extends BasePage {
    * Navigates to the Contact Us page by clicking the Contact Us link and waiting for the page to load.
    */
   async navigateToContactUsPage() {
-    await this.getContactUsLint().click()
+    await this.getContactUsLink().click()
     await this.page.waitForLoadState('load')
   }
 

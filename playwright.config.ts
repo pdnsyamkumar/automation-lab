@@ -72,15 +72,15 @@ export default defineConfig({
   projects: [
     {
       name: 'auth',
-      testMatch: '**/playwright/auth/**/*.spec.ts',
-      testDir: '/playwright/auth',
+      testMatch: '/auth/**/*.spec.ts',
+      testDir: '/auth',
       use: {
         ...getBrowserDevice(),
       },
     },
     {
       name: 'tests',
-      testMatch: '**/playwright/tests/**/*.spec.ts',
+      testMatch: '/tests/**/*.spec.ts',
       use: {
         ...getBrowserDevice(),
       },
