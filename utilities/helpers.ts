@@ -5,7 +5,7 @@ import path from 'path'
  * Reads the CSRF token from the guest-user.json file in the auth directory.
  */
 export function getCsrfTokenFromAuth() {
-  const authFilePath = path.resolve(__dirname, '../auth/guest-user.json')
+  const authFilePath = path.resolve(__dirname, '../tests/auth/guest-user.json')
   try {
     const data = fs.readFileSync(authFilePath, 'utf-8')
     const json = JSON.parse(data)

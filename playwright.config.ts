@@ -73,7 +73,7 @@ export default defineConfig({
     {
       name: 'auth',
       testMatch: '/auth/**/*.spec.ts',
-      testDir: './auth',
+      testDir: './tests/auth',
       use: {
         ...getBrowserDevice(),
       },
