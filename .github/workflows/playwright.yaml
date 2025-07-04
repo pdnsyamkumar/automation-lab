@@ -149,7 +149,7 @@ jobs:
       - name: Run Playwright tests
         run: |
           npx playwright test \
-            --config=playwright/playwright.config.ts \
+            --config=playwright.config.ts \
             --shard=${{ matrix.shard }}/${{ matrix.total_shards }} \
             --project=tests \
             --workers=${{ github.event.inputs.workers }} \
