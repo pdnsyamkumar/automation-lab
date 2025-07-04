@@ -128,7 +128,7 @@ jobs:
         uses: ./.github/actions/install-browser
         with:
           browser: ${{ github.event.inputs.browser }}
-      
+
       - name: Print the User inputs
         run: |
           echo "Running tests with the following parameters:"
@@ -139,10 +139,17 @@ jobs:
           echo "Workers: ${{ github.event.inputs.workers }}"
           echo "Tags: ${{ github.event.inputs.tags }}"
 
+      - name: Generate Auth State
+        run: |          
+          echo "Generating auth state..."
+          npx playwright test \
+            --project=auth \
+            --reporter=list,blob \
+
       - name: Run Playwright tests
         run: |
           npx playwright test \
-            --config=playwright/playwright.config.ts \
+            --config=playwright.config.ts \
             --shard=${{ matrix.shard }}/${{ matrix.total_shards }} \
             --project=tests \
             --workers=${{ github.event.inputs.workers }} \

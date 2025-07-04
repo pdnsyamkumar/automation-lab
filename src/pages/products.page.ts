@@ -65,6 +65,9 @@ export class ProductsPage extends BasePage {
    */
   async addProductToCartByName(productName: string) {
     const product = await this.getProductDetailsByName(productName)
+    if (!product) {
+      throw new Error(`Product with name ${productName} not found`)
+    }
     await product?.addToCartButton?.click()
     await this.page.waitForLoadState('load')
   }
@@ -75,6 +78,9 @@ export class ProductsPage extends BasePage {
    */
   async clickViewProductByName(productName: string) {
     const product = await this.getProductDetailsByName(productName)
+    if (!product) {
+      throw new Error(`Product "${productName}" not found on the page`)
+    }
     await product?.viewProductButton?.click()
     await this.page.waitForLoadState('load')
   }
@@ -85,6 +91,11 @@ export class ProductsPage extends BasePage {
    */
   async clickViewProductByIndex(index: number) {
     const products = await this.getAllProductDetails()
+    if (index < 1 || index > products.length) {
+      throw new Error(
+        `Invalid product index: ${index}. Valid range: 1-${products.length}`
+      )
+    }
     await products[index - 1]?.viewProductButton?.click()
     await this.page.waitForLoadState('load')
   }

@@ -1,27 +1,27 @@
 import { Country, NamePrefix } from '@utilities/enums'
 
-const firstName = 'Dola Naga Syam Kumar'
-const lastName = 'Peraka'
-export const exitingUserData = {
+const firstName = 'Test'
+const lastName = 'User'
+export const existingUserData = {
   namePrefix: NamePrefix.MRS_,
   firstName,
   lastName,
   name: `${firstName} ${lastName}`,
-  email: 'pdnsyamkumar@gmail.com',
-  password: `Pdnsk@0173`,
+  email: 'test.user@example.com',
+  password: 'TestPassword123!',
   dateOfBirth: {
-    day: '24',
-    month: 'May',
-    year: '1996',
+    day: '1',
+    month: 'January',
+    year: '1990',
   },
   signUpForOurNewsLetter: false,
   receiveSpecialOffersFromOurPartners: false,
-  company: 'PDNSK',
-  address: '8-3-234/447',
-  address2: 'LN Nagar',
+  company: 'Test Company',
+  address: '123 Test Street',
+  address2: 'Test City',
   country: Country.INDIA,
   state: 'Telangana',
   city: 'Hyderabad',
   zipCode: '500045',
-  mobileNumber: '9014117617',
+  mobileNumber: '9999999999',
 }

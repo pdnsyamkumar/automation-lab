@@ -8,7 +8,6 @@ export class AuthApi extends BaseApi {
     csrftoken: string
     formData: Record<string, string>
   }) {
-    const sessionid = ''
     const url = 'https://automationexercise.com/api/createAccount'
     const cookies = `csrftoken=${csrftoken}`
     const headers = {
