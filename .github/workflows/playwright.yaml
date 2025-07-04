@@ -111,7 +111,7 @@ jobs:
           echo "grep-invert-arg=$grep_invert_arg" >> $GITHUB_OUTPUT
 
   run-tests:
-    needs: [setup-environment, auth-setup]
+    needs: setup-environment
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.40.0-focal
