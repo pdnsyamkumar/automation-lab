@@ -110,8 +110,30 @@ jobs:
           echo "grep-arg=$grep_arg" >> $GITHUB_OUTPUT
           echo "grep-invert-arg=$grep_invert_arg" >> $GITHUB_OUTPUT
 
-  run-tests:
+  auth-setup:
     needs: setup-environment
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.40.0-focal
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v4
+
+        - name: Setup node, npm and cache
+          uses: './.github/actions/setup-npm'
+
+        - name: Install Browsers
+          uses: ./.github/actions/install-browser
+          with:
+            browser: ${{ github.event.inputs.browser }}
+
+        - name: Run authentication setup
+          run: |
+            echo "Running authentication setup..."
+            npx playwright test --project=auth
+
+  run-tests:
+    needs: [setup-environment, auth-setup]
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.40.0-focal
