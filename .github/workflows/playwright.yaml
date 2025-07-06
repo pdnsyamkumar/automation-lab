@@ -140,7 +140,7 @@ jobs:
           echo "Tags: ${{ github.event.inputs.tags }}"
 
       - name: Generate Auth State
-        run: |          
+        run: |
           echo "Generating auth state..."
           npx playwright test \
             --project=auth \

@@ -71,9 +71,9 @@ export default defineConfig({
   },
   projects: [
     {
-      name: 'auth',
+      name: 'auth-setup',
       testMatch: '/auth/**/*.spec.ts',
-      testDir: './tests/auth',
+      testDir: './tests/auth-setup',
       use: {
         ...getBrowserDevice(),
       },
