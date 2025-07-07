@@ -24,7 +24,7 @@ const getBrowserDevice = () => {
   const browserType = process.env.BROWSER?.toLowerCase() || 'chromium'
 
   switch (browserType) {
-    case 'edge':
+    case 'msedge':
       return {
         ...devices['Desktop Edge'],
         launchOptions: { ...launchOptions, channel: 'msedge' },

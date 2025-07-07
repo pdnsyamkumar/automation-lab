@@ -7,3 +7,4 @@ test('API 3: Get All Brands List', async ({ brandsApi }) => {
   expect(brands).toHaveProperty('brands')
   expect(brands.brands.length).toBeGreaterThan(0)
 })
+
